@@ -2,16 +2,10 @@
 import React, { useRef } from "react";
 
 export default function Contacto() {
-    const nameRef = React.useRef();
-    const emailRef = React.useRef();
-    const messajeRef = React.useRef();
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const messajeRef = useRef(null);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(nameRef.current.value)
-        console.log(emailRef.current.value)
-        console.log(messajeRef.current.value)
-    };
     
     return (
         
@@ -35,12 +29,17 @@ export default function Contacto() {
                 <dd class="text-gray-700 sm:col-span-2">mate_instagram</dd>
             </div>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => {
+        e.preventDefault();
+        console.log(nameRef.current.value)
+        console.log(emailRef.current.value)
+        console.log(messajeRef.current.value)
+    }}>
             <label>Nombre:</label>
-            <input ref={nameRef} type="text" placeholder="Nombre" /><br/>
+            <input ref={nameRef} type="text" placeholder="Nombre"  /><br/>
             <label>Correo Electronico:</label>
             <input ref={emailRef} type="email" placeholder="Correo Electronico"/><br/>
-            <input ref={messajeRef} type="text" placeholder="Dejanos tu mensaje aqui!"/><br/>    
+            <textarea ref={messajeRef} type="text" placeholder="Dejanos tu mensaje aqui!"/><br/>    
             <button onClick={() => alert("Mensaje enviado con exito!")} >Enviar</button>
         </form>
    </section>
